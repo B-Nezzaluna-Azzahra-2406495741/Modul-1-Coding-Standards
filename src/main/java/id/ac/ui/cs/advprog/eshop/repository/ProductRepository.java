@@ -11,11 +11,21 @@ import java.util.List;
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
+    //create product
     public Product create(Product product) {
+        if (product.getProductId() == null) {
+            product.setProductId(java.util.UUID.randomUUID().toString()); // Generate ID otomatis
+        }
         productData.add(product);
-        return  product;
+        return product;
     }
 
+    //delete product
+    public void deleteById(String productId) {
+        productData.removeIf(product -> product.getProductId().equals(productId));
+    }
+
+    //get all products
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
