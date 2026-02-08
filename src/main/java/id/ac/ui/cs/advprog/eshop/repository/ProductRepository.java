@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductRepository {
@@ -25,29 +26,15 @@ public class ProductRepository {
         productData.removeIf(product -> product.getProductId().equals(productId));
     }
 
-    //edit product
-    public Product editProduct(Product product) {
-        for (int i = 0; i < productData.size(); i++) {
-            if (productData.get(i).getProductId().equals(product.getProductId())) {
-                productData.set(i, product);
-                return product;
-            }
-        }
-        return null;
-    }
-
     //get all products
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
 
     //get product by id
-    public Product findById(String productId) {
-        for (Product product : productData) {
-            if (product.getProductId().equals(productId)) {
-                return product;
-            }
-        }
-        return null;
+    public Optional<Product> findById(String productId) {
+        return productData.stream()
+                .filter(product -> product.getProductId().equals(productId))
+                .findFirst();
     }
 }
