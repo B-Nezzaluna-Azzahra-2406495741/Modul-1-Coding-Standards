@@ -15,17 +15,19 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;
 
+    // create product
     @Override
     public Product create(Product product) {
         productRepository.create(product);
         return product;
     }
-
+    // delete product by id
     @Override
     public void deleteById(String productId) {
         productRepository.deleteById(productId);
     }
 
+    // edit product
     @Override
     public Product editProduct(Product product) {
         Optional<Product> productExist = productRepository.findById(product.getProductId());
@@ -38,6 +40,7 @@ public class ProductServiceImpl implements ProductService {
         throw new RuntimeException("Product not found with ID: " + product.getProductId());
     }
 
+    // find all products
     @Override
     public List<Product> findAll() {
         Iterator<Product> productIterator = productRepository.findAll();
@@ -46,6 +49,7 @@ public class ProductServiceImpl implements ProductService {
         return allProduct;
     }
 
+    // find product by id
     @Override
     public Optional<Product> findById(String id) {
         return productRepository.findById(id);
