@@ -1,4 +1,4 @@
-# eshop project
+# eshop project (Modul 1)
 
 Nama: Nezzaluna Azzahra  
 NPM: 2406495741  
