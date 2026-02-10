@@ -12,26 +12,26 @@ import java.util.Optional;
 public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
-    //create product
+    // create product
     public Product create(Product product) {
         if (product.getProductId() == null) {
-            product.setProductId(java.util.UUID.randomUUID().toString()); // Generate ID otomatis
+            product.setProductId(java.util.UUID.randomUUID().toString());
         }
         productData.add(product);
         return product;
     }
 
-    //delete product
+    // delete product
     public void deleteById(String productId) {
         productData.removeIf(product -> product.getProductId().equals(productId));
     }
 
-    //get all products
+    // get all products
     public Iterator<Product> findAll() {
         return productData.iterator();
     }
 
-    //get product by id
+    // get product by id
     public Optional<Product> findById(String productId) {
         return productData.stream()
                 .filter(product -> product.getProductId().equals(productId))
